@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Sistema de Biblioteca</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Sistema de Biblioteca</h1>
+        <div class="menu">
+            <a href="/cadastrar_livro" class="btn">Cadastrar Livro</a>
+            <a href="/emprestar_livro" class="btn">Emprestar Livro</a>
+            <a href="/devolver_livro" class="btn">Devolver Livro</a>
+            <a href="/historico_emprestimos" class="btn">Histórico de Empréstimos</a>
+        </div>
+    </div>
+</body>
+</html>
