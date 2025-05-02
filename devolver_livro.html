@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Devolver Livro</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Devolver Livro</h2>
+        <form action="/devolver_livro" method="POST">
+            <label for="id_emprestimo">ID do Empréstimo:</label>
+            <input type="number" id="id_emprestimo" name="id_emprestimo" required>
+
+            <label for="data_devolucao">Data da Devolução:</label>
+            <input type="date" id="data_devolucao" name="data_devolucao" required>
+
+            <button type="submit" class="btn">Devolver</button>
+        </form>
+    </div>
+</body>
+</html>

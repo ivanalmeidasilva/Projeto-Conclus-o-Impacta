@@ -31,6 +31,32 @@ def cadastrar_livro():
         return redirect('/')
     return render_template('cadastrar_livro.html')
 
+# Empréstimo de livros
+@app.route('/emprestar_livro', methods=['GET', 'POST'])
+def emprestar_livro():
+    if request.method == 'POST':
+
+        id_livro = request.form['id_livro']
+        data_emprestimo = request.form['data_emprestimo']
+        cursor.execute("INSERT INTO emprestimos (id_livro, data_emprestimo) VALUES (%s, %s)",
+                       (id_livro, data_emprestimo))
+        cursor.execute("UPDATE livros SET disponivel = FALSE WHERE id = %s", (id_livro,))
+        db.commit()
+        return redirect('/')
+    return render_template('emprestar_livro.html')
+
+# Devolução de livros
+@app.route('/devolver_livro', methods=['GET', 'POST'])
+def devolver_livro():
+    if request.method == 'POST':
+        id_emprestimo = request.form['id_emprestimo']
+        data_devolucao = request.form['data_devolucao']
+        cursor.execute("UPDATE emprestimos SET data_devolucao = %s WHERE id = %s",
+                       (data_devolucao, id_emprestimo))
+        cursor.execute("UPDATE livros SET disponivel = TRUE WHERE id = (SELECT id_livro FROM emprestimos WHERE id = %s)", (id_emprestimo,))
+        db.commit()
+        return redirect('/')
+    return render_template('devolver_livro.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
